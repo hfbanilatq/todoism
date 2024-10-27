@@ -50,3 +50,11 @@ jobs:
     - name: Run Playwright tests
       working-directory: playwright-tests/TallerCICD
       run: npx playwright test
+
+    - name: Upload Playwright Test Report
+      if: ${{ success() }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: playwright-report
+        path: playwright-tests/TallerCICD/playwright-report/
+        retention-days: 30
